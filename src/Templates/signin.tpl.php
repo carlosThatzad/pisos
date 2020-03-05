@@ -57,36 +57,28 @@
 </head>
 
 <body class="text-center">
+<?php
+foreach ($users as $user)
+    echo $user;
+
+?>
 
 
-<h1><?= $title; ?></h1>
 
-<form class="form-signin"  action="/user/signup" method="post">
+<form class="form-signin"  action="/user/signin" method="post">
     <img class="mb-4" src="img/640px-React-icon.svg.png" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail" class="sr-only"> Usuario</label>
-    <input id="inputEmail" class="form-control" placeholder=" name" required="" autofocus=""  type="text"name="name">
-    <label for="inputPhone" class="sr-only">Name</label><br>
-
-    <input id="inputEmail" class="form-control" placeholder=" lastname" required="" autofocus=""  type="text"name="lastname">
-    <label for="inputPhone" class="sr-only">Lastname</label><br>
-
-    <input id="inputEmail" class="form-control" placeholder=" phone" required="" autofocus=""  type="text"name="phone">
-    <label for="inputPhone" class="sr-only">Password</label><br>
-
-    <input id="inputPassword" class="form-control" placeholder=" passwd2" required="" autofocus="" type="password"  type="text"name="passwd2">
+    <input id="inputEmail" class="form-control" placeholder=" user" required="" autofocus=""  type="text" name="email">
     <label for="inputPassword" class="sr-only">Password</label>
-<br>
-    <input id="inputEmail" class="form-control" placeholder=" email" required="" autofocus=""  type="text"name="email">
-    <label for="inputEmail" class="sr-only">Mail</label>
-<br>
-    <input id="inputPassword" class="form-control" placeholder="passwd" required="" type="password" name="passwd">
+    <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password" name="passwd">
     <div class="checkbox mb-3">
         <label>
             <input value="remember-me" type="checkbox"> Remember me
         </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Register now!</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <a class="w3-btn w3-green " href="register">Registrate Ahora</a>
     <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
 </form>
 <footer>

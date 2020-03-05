@@ -14,9 +14,10 @@ class BaseController extends Controller
 
     }
     public function  index(){
-        $data=['menu'=>'Inicio',
-                'menu1'=>'Home',
-                'menu2'=>'Login',
+        $data=['menu'=>'/',
+                'menu1'=>'default',
+                'menu2'=>'user',
+                 'menu4'=>'dashboard-admin',
                 'products'=>$this->getResults(),
                 'user'=>$_SESSION["sesiones"]
 
@@ -35,7 +36,7 @@ $data=$this->request->getParams();
         $db=$this->getDB();
         //$db->query();
 
-        $stmt=$this->query($db ,"SELECT * FROM productos" , null );
+        $stmt=$this->query($db ,"SELECT * FROM publications" , null );
         $result=$this->row_extracts_first($stmt);
         return $result;
     }
@@ -45,14 +46,14 @@ $data=$this->request->getParams();
         $db=$this->getDB();
         // $db->query();
 
-        $stmt=$this->query($db ,"SELECT * FROM productos" , null );
+        $stmt=$this->query($db ,"SELECT * FROM publications" , null );
         $result=$this->row_extracts($stmt);
         return $result;
     }
 
-    public function json(array $dataview)
+ /*   public function json(array $dataview)
     {
         // TODO: Implement json() method.
-    }
+    }*/
 }
 

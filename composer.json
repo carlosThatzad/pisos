@@ -1,10 +1,19 @@
 {
+  "name": "Rentit-orm",
+  "type": "project",
+
   "autoload": {
     "psr-4": {
       "Rentit\\": "src/"
     }
-
+  },
+  "require": {
+    "php": "^7.0",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "illuminate/database": "^6.12"
+  }
 
 }
-  }
+
 

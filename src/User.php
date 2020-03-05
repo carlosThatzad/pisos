@@ -1,26 +1,42 @@
 <?php
 
 
-namespace Rentit;
+namespace Rentit\Models;
 
 
-use Rentit\Controllers\Entity;
+use Illuminate\Database\Eloquent\Model;
+use Rentit\Session;
 
-class User extends Entity
+class User extends Model
 {
-    protected static $tableName= "user";
+    protected static $table= 'users';
+    protected $fillable=['name','password','rol','email'];
+
     private $username;
     private $password;
     private $id;
 
 
-public function __construct($username , $id=2)
+public function _construct($username , $id,$password)
 {
-    $this->setUsuari($params["username"]);
-    $this->setContrasenya($params["password"]);
+    $this->setUsuari($username);
+    $this->setContrasenya($password);
     $this->setIdTipus($id);
 
 
+
+}
+
+    static function userData ($id = null) {
+
+        if ($id == null) { $id = Session::get('id'); }
+        $user = User::where('id', $id) -> get() -> first();
+        return $user;
+
+    }
+
+
+public function is_client(){
 
 }
 

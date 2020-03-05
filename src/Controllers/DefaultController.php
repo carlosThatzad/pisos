@@ -5,6 +5,7 @@ namespace Rentit\Controllers;
 
 
 use Rentit\Controller;
+use Rentit\Models\Publication;
 
 
 final class DefaultController extends Controller
@@ -17,58 +18,18 @@ public function __construct($request)
 }
 public function index(){
 
-
-    $template=['template'=>'default'];
-    $this->render($template);
-    $data=['title'=>'default',
-            'results'=>$this->getResults()
-
-        ];
-    $this->render($data);
-    $results=$this->getResults();
+$dataview=$this->allPublications();
+$this->render($dataview);
 
     //echo $results;
 }
+private function allPublications(){
+    $publications=Publication::all()->toArray();
+return $publications;
+}
 
-  public function render(array $dataview=null,string $template=null)
-    {
-        if ($dataview) {
-            extract($dataview);
-            include 'src/Templates/' . $this->request->getController() . '.tpl.php';
-            if ($template != "") {
-                include 'src/Templates/' . $template . '.tpl.php';
-            }
-        }
-   //   var_dump($dataview);
-   // var_dump($template);
-
-    }
-
-    public function getSingleResult()
-    {
-        // TODO: Implement getSingleResult() method.
-        $db=$this->getDB();
-        //$db->query();
-
-        $stmt=$this->query($db ,"SELECT * FROM user" , null );
-        $result=$this->row_extracts_first($stmt);
-        return $result;
-    }
-
-    public function getResults()
-    {
-        $db=$this->getDB();
- // $db->query();
-
-    $stmt=$this->query($db ,"SELECT * FROM user" , null );
-        $result=$this->row_extracts($stmt);
-        return $result;
-        // TODO: Implement getResults() method.
-    }
-
-    public function json(array $dataview)
+  /*  public function json(array $dataview)
     {
         // TODO: Implement json() method.
-    }
-
+    }*/
 }

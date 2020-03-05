@@ -3,25 +3,27 @@
 
 namespace Rentit; //espacio de nombres
 
-
+use Rentit\Models\DB;
 //use http\Env\Request;
 
 class App
 {
     static function run()
-    {//añadimos un metodo estatico que llamamso en el index
+    {
+        //Activo la base de datos y le damos acceso a eloquent
+        new DB();
+    //añadimos un metodo estatico que llamamso en el index
         //LO primero que  deberiamos hacer sera construir las rutas
 
         //como hacer un archivo
         $routes =self::getRoutes();
 
        //hacer clase request
-        $request = new Request();//al construir el controlador ya herede un request con el uq pueda trabajar
+        $request = new Request();               //al construir el controlador ya herede un request con el uq pueda trabajar
 
-        //una vez tenemos esto podemos llamar al controlador
+                                                //una vez tenemos esto podemos llamar al controlador
         $controller=$request->getController();  //request es el array asociativo contodo lo que hemos metido en request
         $action=$request->getAction();
-
 
         try {
             if (in_array($controller, $routes)) {
@@ -80,6 +82,7 @@ static function getRoutes():Array{
         }
 
     }
+
     return $routes;
 
 }

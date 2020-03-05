@@ -57,17 +57,24 @@
 </head>
 
 <body class="text-center">
+<?php
+foreach ($users as $user)
+    echo $user;
+
+?>
 
 
-<h1><?= $title; ?></h1>
+<div><h3><?php echo $title; ?></h3></div>
+<?php if (isset($error)) { include 'error.tpl.php'; } ?>
+<form class="form-signin"  action="/user/signin" method="post">
+    <input type="hidden" name="token"value="<?=Rentit\Session::get('token')?> ">
 
-<form class="form-signin"  action="/user/user" method="post">
     <img class="mb-4" src="img/640px-React-icon.svg.png" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail" class="sr-only"> Usuario</label>
-    <input id="inputEmail" class="form-control" placeholder=" user" required="" autofocus=""  type="text"name="usuario">
+    <input id="inputEmail" class="form-control" placeholder=" user" required="" autofocus=""  type="text" name="email">
     <label for="inputPassword" class="sr-only">Password</label>
-    <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password" name="pas">
+    <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password" name="passwd">
     <div class="checkbox mb-3">
         <label>
             <input value="remember-me" type="checkbox"> Remember me
